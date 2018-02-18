@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Snow Man</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,400,600,700">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/normalize.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="jumbotron">
+        <h1 class="text-center">SnowMan Game</h1>
+        <h3 class="text-center">Guess the word before the SnowMan runs out of time to land his trick!</h3>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-6">
+                <br>
+                <div class="card">
+                    <p class="card-header">already guessed</p>
+                    <div id="display"></div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6">
+                <br>
+                <div class="card">
+                    <p class="card-header">choose your next move</p>
+                    <div id="buttons"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <br>
+                <div class="card">
+                    <p class="card-header">scoreboard</p>
+
+                    <div class="row">
+                        <div id="scoreboard" class="card">
+                            <span class="card-header">jumps survived</span>
+                            <span class="card-header">jumps crashed</span>
+                            <span class="card-header">lives left</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer" text-align="center">
+        <button id="clear">New Game</button>
+        <div id="fooTxt">Press any key to get started!</div>
+    </div>
+
+
+
+	<script src="assets/javascript/main.js" type="text/javascript"></script>
+</body>
+
+</html>

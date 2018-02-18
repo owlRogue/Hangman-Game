@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SnowMan Game</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,400,600,700">
+
+</head>
+
+<style>
+    body {
+        font-family: "Josefin Sans";
+        width: 100%;
+    }
+
+    .jumbotron {
+        margin: 0px auto;
+        background: url('assets/images/snow_jumbo.gif') no-repeat top center;
+        background-size: cover;
+        color: white;
+        border-radius: 0;
+    }
+
+    .footer {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        height: 60px;
+        background: url('assets/images/snow_jumbo.gif') no-repeat bottom center;
+        background-size: cover;
+        text-align: center;
+        font-size: 30px;
+        padding-top: 12px;
+    }
+
+    #buttons {
+        background-color: orange;
+    }
+
+</style>
+
+<body>
+
+    <div class="jumbotron">
+        <h1 class="text-center">SnowMan Game</h1>
+        <h3 class="text-center">Guess the word before the SnowMan runs out of time to land his trick!</h3>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <!-- INPUT DISPLAY -->
+            <div class="col-lg-4">
+                <br>
+                <div class="card">
+                    <p class="card-header">choose your next move</p>
+                    <div class="card-body" id="inputDisplay">
+                        <div class="btn-group-xs" id="buttons">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OUTPUT DISPLAY -->
+            <div class="col-lg-6">
+                <br>
+                <div class="card">
+                    <p class="card-header">trick word</p>
+                    <div class="card-body" id="outputDisplay">
+                        <h1 id="guesses"></h1>
+                        <h1 id="operator"></h1>
+                        <h1 id="correctGuesses"></h1>
+                        <hr>
+                        <h1 id="outputDisplay"></h1>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer" text-align="center">
+        Press any key to get started!
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () { // makes variables global
+        /*  var guess = "";
+            var vocabDef = "";
+            var vocabWord = "";
+            var vocabSplit = "";
+            var madeGuess = false;
+            var stillAlive = true;
+            var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
+                "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"
+            ];
+
+           function initializeGame() { // this function initializes the game + when user hits clear, app resets
+                var guess = "";
+                var vocabDef = "";
+                var vocabWord = "";
+                var vocabSplit = "";
+                var madeGuess = false;
+                var stillAlive = true;
+
+                $("#guess, #vocabDef, #vocabWord, #outputDisplay").empty();
+            } 
+        */
+
+            
+            
+            var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
+                "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"
+            ];
+
+            for (var i = 0; i < letters.length; i++) {
+                console.log(letters[i]);
+               // console.log($(this).val());
+
+
+                var letters = $("<button>").addClass("btn-group-xs") // creates button and adds x-small button group class
+                    .attr("data-letter", letters[i]) // gives data-attribute called "data-word", with a value eqaual to "letters[i]"
+                    .text(letters[i]) // gives buttons text equal to "letters[i]
+                    .appendTo("#buttons") // appends each letter button to the "#inputDisplay" div
+            };
+
+            /* document.onkeyup = function (event) { // inside the on-click event...
+
+                guess = $("<button>").addClass("text-muted", "guesses") // mutes text-color after clicked
+                    .attr("data-letter", letters[i]) // allows access to data points
+                    $("#outputDisplay").append(guess)
+                    console.log("You guessed: " + guess)
+                    guess = guess + ($(this).val())
+
+        };*/
+        initializeGame();
+        });
+
+           /*
+                <div class="btn-group-xs" id="buttons">
+                <button class="btn-group-xs" data-letter="A">A</button>
+                <button class="btn-group-xs" data-letter="B">B</button>
+                <button class="btn-group-xs" data-letter="C">C</button>
+                <button class="btn-group-xs" data-letter="D">D</button>
+                <button class="btn-group-xs" data-letter="E">E</button>
+                <button class="btn-group-xs" data-letter="F">F</button>
+                <button class="btn-group-xs" data-letter="G">G</button>
+                <button class="btn-group-xs" data-letter="H">H</button>
+                <button class="btn-group-xs" data-letter="I">I</button>
+                <button class="btn-group-xs" data-letter="J">J</button>
+                <button class="btn-group-xs" data-letter="K">K</button>
+                <button class="btn-group-xs" data-letter="L">L</button>
+                <button class="btn-group-xs" data-letter="M">M</button>
+                <button class="btn-group-xs" data-letter="N">N</button>
+                <button class="btn-group-xs" data-letter="O">O</button>
+                <button class="btn-group-xs" data-letter="P">P</button>
+                <button class="btn-group-xs" data-letter="Q">Q</button>
+                <button class="btn-group-xs" data-letter="R">R</button>
+                <button class="btn-group-xs" data-letter="S">S</button>
+                <button class="btn-group-xs" data-letter="T">T</button>
+                <button class="btn-group-xs" data-letter="U">U</button>
+                <button class="btn-group-xs" data-letter="V">V</button>
+                <button class="btn-group-xs" data-letter="W">W</button>
+                <button class="btn-group-xs" data-letter="X">X</button>
+                <button class="btn-group-xs" data-letter="Y">Y</button>
+                <button class="btn-group-xs" data-letter="Z">Z</button>
+                <button class="btn-group-xs" data-letter="_">_</button>
+                </div>
+
+
+
+            $("#outputDisplay").text(letters);
+      // check if we've already run a calculation and do nothing if awaiting user input (improves script efficiency)
+        if (stillAlive = false) {
+          return false;
+        }
+    // if stillAlive = 'true', we should be writing the secondNumber, otherwise, the firstNumber
+        if (madeGuess) {
+          letters = $(this).val();
+          $("#display").text(letters);
+        }
+        else {
+
+        }
+
+        $("#outputDisplay").text(letters);
+      }).on("click", ".clear", function () {
+        // Call initializeCalculater so we can reset the state of our app
+        initializeGame();
+
+
+        
+
+
+
+/*
+        function vocabSplit() {
+            var vocabStr = "vocabList.html";
+            $.getJSON( vocabStr, {
+            format: "json",})
+
+            .done(function( data ) {
+            $.each( data.items, function( i, item ) {
+                $( "<img>" ).attr( "src", item.media.m ).appendTo( "#outputDisplay" );
+
+                if ( i === 3 ) {
+                return false;
+                };
+            });
+            });
+        }; 
+        
+        
+        
+        
+        
+        
+        */
+    </script>
+
+
+
+</body>
+
+
+
+</html>

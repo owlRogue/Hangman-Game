@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SnowMan Game</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,400,600,700">
+
+</head>
+
+<style>
+
+  body {
+    font-family: "Josefin Sans";
+    background-color: aliceblue;
+  }
+
+  .jumbotron {
+    margin: 0px auto;
+    background: url('assets/images/snow_jumbo.gif') no-repeat top center;
+    background-size: cover;
+    color: white;
+    border-radius: 0;
+  }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: url('assets/images/snow_jumbo.gif') no-repeat bottom center;
+        background-size: cover;
+        font-size: 30px;
+        min-height: 20px;
+    }
+
+    #buttons {
+        background: url('assets/images/snow_jumbo.gif') no-repeat top left;
+        display: block;
+        align-items: center;
+    }
+
+    #clear {
+        position: absolute;
+        left: 0;
+        font-size: 28px;
+        color: white;
+        border-style: solid;
+        width: auto;
+        height: 100%;
+        background-color: rgb(97, 167, 214);
+        border: 0px;
+     }
+
+     #fooTxt {
+      float: center
+      bottom: 0;
+      color: white;
+      text-align: center;
+      padding-top: 20px;
+     }
+
+    .container {
+      max-height: 800px;
+    }
+
+
+</style></head>
+
+
+
+<body>
+
+  <div class="jumbotron">
+    <h1 class="text-center">SnowMan Game</h1>
+    <h3 class="text-center">Guess the word before the SnowMan runs out of time to land his trick!</h3>
+  </div>
+
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Calculator Panel -->
+      <div class="col-lg-4">
+        <br>
+        <div class="card">
+          <p class="card-header">choose your next move</p>
+
+
+          <div class="card-body">
+            <div class="btn-group-xs" id="buttons">
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- Result Panel -->
+      <div class="col-lg-6">
+        <br>
+        <div class="card">
+          <p class="card-header">trick word</p>
+          <div class="card-body">
+
+            <div id="guessed"></div>
+            <div id="operator"></div>
+            <div id="guessIcon"></div>
+            <hr>
+            <div id="result"></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer" text-align="center">
+      <button id="clear">New Game</button>
+      <div id="fooTxt">Press any key to get started!</div>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+      var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
+        "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"
+      ];
+
+
+
+      for (var i = 0; i < letters.length; i++) { 
+        console.log(letters[i]);
+
+
+
+        var letterBtn = $("<button>").addClass("btn-group-xs") // creates button and adds x-small button group class
+          .attr("data-letter", letters[i]) // gives data-attribute called "data-word", with a value eqaual to "letters[i]"
+          .text(letters[i]) // gives buttons text equal to "letters[i]
+          .appendTo("#buttons"); // 6. Finally, append each "letterBtn" to the "#buttons" div (provided).
+      };
+      
+      $(".letter-button").on("click", function () {
+
+        var letterGuess = $("<div>").addClass("text-muted")
+            letterGuess.text($(this).attr("data-letter")) // 10. Then chain the following code onto the "letterGuess" variable: .text($(this).attr("data-letter"))
+            .appendTo("#guessed"); // 6. Finally, append each "letterBtn" to the "#buttons" div (provided).
+
+
+        //  console.log("You clicked a letter: " + letterGuess)
+      });
+
+      $("#clear").on("click", function () {
+        $("#guessed").empty();
+      }); // CLEAR should ALSO = New Game
+
+    });
+
+
+
+/*
+  var letterBtn = $("<button>").addClass("btn-group-xs ")
+    .attr("data-letter", letters[i]) // 4. Then give each "letterBtn" a data-attribute called "data-letter", with a value eqaual to "letters[i]"
+    .text(letters[i]) // 5. Then give each "letterBtn" a text equal to "letters[i]".
+    .appendTo("#buttons") // 6. Finally, append each "letterBtn" to the "#buttons" div (provided).
+};
+$(".letter-button").on("click", function () {
+
+  var letterGuess = $("<div>")
+  letterGuess.addClass("text-muted")
+  letterGuess.text($(this).attr("data-letter")) // 10. Then chain the following code onto the "letterGuess" variable: .text($(this).attr("data-letter"))
+  $("#display").append(letterGuess);
+
+
+  //  console.log("You clicked a letter: " + letterGuess)
+});
+$("#clear").on("click", function () {
+  $("#display").empty();
+}); // CLEAR should ALSO = New Game
+
+});
+*/
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
