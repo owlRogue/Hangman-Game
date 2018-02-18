@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Snow Man</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,400,600,700">
+
+</head>
+
+<style>
+    body {
+        font-family: "Josefin Sans";
+        background-color: aliceblue;
+    }
+
+    .jumbotron {
+        margin: 0px auto;
+        background: url('assets/images/snow_jumbo.gif') no-repeat top center;
+        background-size: cover;
+        color: white;
+        border-radius: 0;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: url('assets/images/snow_jumbo.gif') no-repeat bottom center;
+        background-size: cover;
+        font-size: 30px;
+        min-height: 20px;
+    }
+
+    #fooTxt {
+        float: center bottom: 0;
+        color: white;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .letter {
+        width: 30px;
+        height: 30px;
+        border-style: solid;
+        padding: 2px;
+        float: left;
+        margin: 2px;
+    }
+
+    .letter-button-color {
+        color: darkcyan;
+    }
+
+    .guess-color {
+        color: rgb(97, 167, 214);
+    }
+
+    #display,
+    #scoreboard {
+        padding: 10px;
+        height: auto;
+        width: 220px;
+        margin-left: 60px;
+    }
+
+    #buttons {
+        background: url('assets/images/snow_jumbo.gif') no-repeat top left;
+        padding: 5px;
+    }
+
+    #clear {
+        position: absolute;
+        left: 0;
+        font-size: 28px;
+        color: white;
+        border-style: none;
+        width: auto;
+        height: 100%;
+        background-color: rgb(97, 167, 214);
+        border: 0px;
+    }
+</style>
+
+<body>
+
+        <div class="jumbotron">
+            <h1 class="text-center">SnowMan Game</h1>
+            <h3 class="text-center">Guess the word before the SnowMan runs out of time to land his trick!</h3>
+        </div>
+    
+        <div class="container">
+    
+            <div class="row">
+    
+                <div class="col-lg-6">
+                    <br>
+                    <div class="card">
+                        <p class="card-header">already guessed</p>
+                        <div id="display"></div>
+                    </div>
+                </div>
+    
+    
+                <div class="col-lg-6">
+                    <br>
+                    <div class="card">
+                        <p class="card-header">choose your next move</p>
+                        <div id="buttons"></div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-6">
+                    <br>
+                    <div class="card">
+                        <p class="card-header">scoreboard</p>
+    
+                        <div class="row">
+                            <div id="scoreboard" class="card">
+                                <span class="card-header">jumps survived</span>
+                                <span class="card-header">jumps crashed</span>
+                                <span class="card-header">lives left</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    
+        <div class="footer" text-align="center">
+            <button id="clear">New Game</button>
+            <div id="fooTxt">Press any key to get started!</div>
+        </div>
+    
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+                    "P", "Q",
+                    "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"
+                ];
+
+
+                for (var i = 0; i < letters.length; i++) {
+                    console.log(letters[i]);
+
+                    var letterBtn = $("<button>").addClass("letter-button letter letter-button-color")
+                        .attr("data-letter", letters[i])
+                        .text(letters[i])
+                        .appendTo("#buttons");
+
+                };
+
+                $(".letter-button").on("click", function () {
+
+                    // Inside the on-click event...
+
+                    // 8. Create a variable called "fridgeMagnet" and set the variable equal to a new div.
+
+                    var fridgeMagnet = $("<div>")
+
+                    // 9. Give each "fridgeMagnet" the following classes: "letter fridge-color".
+                    // 10. Then chain the following code onto the "fridgeMagnet" variable: .text($(this).attr("data-letter"))
+
+                    fridgeMagnet.addClass("letter fridge-color");
+                    fridgeMagnet.text($(this).attr("data-letter"));
+                    $("#display").append(fridgeMagnet);
+
+                });
+
+                $("#clear").on("click", function () {
+                    $("#display").empty();
+                });
+
+            });
+
+
+            // 11. Lastly append the fridgeMagnet variable to the "#display" div (provided);
+
+            // Be sure to test that your code works for this major task, before proceeding to the next one!
+
+            // MAJOR TASK #3: ATTACH ON-CLICK EVENTS TO "CLEAR" BUTTON
+            // =================================================================================
+
+            // 12. Create an "on-click" event attached to the "#clear" button id.
+
+            // Inside the on-click event...
+
+            // 13. Use the jQuery "empty()" method to clear the contents of the "#display" div.
+        </script>
+</body>
+
+</html>
