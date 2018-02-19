@@ -6,7 +6,6 @@
     <title>Snow Man</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,400,600,700">
@@ -17,7 +16,7 @@
     body {
         font-family: "Josefin Sans";
         background-color: aliceblue;
-        max-height: 600px;
+        width
     }
 
     .jumbotron {
@@ -47,34 +46,34 @@
         padding-top: 20px;
     }
 
-    .letterButton {
+    .letter {
         width: 30px;
         height: 30px;
         border-style: solid;
         padding: 2px;
         float: left;
-        margin: 4px;
-        border-radius: 15px;
-        vertical-align: center;
+        margin: 2px;
+    }
+
+    .letter-button-color {
+        color: darkcyan;
     }
 
     .guess-color {
         color: rgb(97, 167, 214);
     }
 
-    .display {
-        min-height: 120px;
+    .display,
+        {
+        padding: 10px;
+        min-height: 30px;
+        width: 220px;
+        margin-left: 60px;
     }
 
     #buttons {
         background: url('assets/images/snow_jumbo.gif') no-repeat top left;
-        background-size: cover;
-        padding: 10px;
-    }
-
-    #letterBox,
-    #scoreboard {
-        padding: 10px;
+        padding: 5px;
     }
 
     #clear {
@@ -104,19 +103,6 @@
         width: 100%;
         height: 100%;
     }
-
-    .row {
-        padding: 40px;
-    }
-
-    ul {
-        list-style: none;
-    }
-
-    .count {
-        width: 20%;
-        height: 100px;
-    }
 </style>
 
 <body>
@@ -127,74 +113,69 @@
     </div>
 
 
-
     <div class="window" id="interface">
 
-        <!-- <div class="row" id="OpeningContent" -->
-        <div class="row" id="mainContent">
-
-            <!-- Guessed Letters -->
+    <div class="opening" id="openingContent">
             <div class="col-lg-6">
-                <br>
-                <div class="card">
-                    <p class="card-header">already guessed</p>
-                    <div class="display" id="letterBox"></div>
-                </div>
-
-            </div>
-
-            <!-- Letter Bin -->
-            <div class="col-lg-6">
-                <br>
-                <div class="card">
-                    <p class="card-header">choose your next move</p>
-                    <div class="display" id="buttons"></div>
+                <div class="box" id="image">
                 </div>
             </div>
+        </div>
 
-            <div class="col-lg-6">
-                <br>
-                <div class="card">
-                    <p class="card-header">scoreboard</p>
+    <div class="blank">
 
-                    <!-- ScoreBoard -->
-                    <div class="display" id="scoreboard">
-                        <br>
-                        <!-- Jumps Survived -->
-                        <div class="count" id="jumpsSurvived">
-                            <h5>jumps survived</h5>
-                            <span>jumps survived</span>
-                        </div>
+    </div>
 
-                        <!-- Jumps NOT Survived -->
-                        <div class="count" id="jumpsCrashed">
-                            <h5>jumps crashed</h5>
-                            <span>jumps survived</span>
-                        </div>
+    <div class="remaining" id="mainContent">
 
-                        <!-- Critical Injuries (AKA Deaths (aka lives)) -->
-                        <div class="count" id="criticalInjuries">
-                            <h5>lives left</h5>
-                            <span>jumps survived</span>
-                        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <p class="card-header">vocab</p>
+                <div class="display" id="vocab">
+                </div>
+            </div>
+        </div>
 
-                    </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <p class="card-header">already guessed</p>
+                <div class="display" id="guessed">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card">
+                <p class="card-header">choose your next move</p>
+                <div class="display" id="buttons">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card">
+                <p class="card-header">scoreboard</p>
+
+                    <div id="scoreboard" class="card">
+                        <span class="card-header">jumps survived</span>
+                        <span class="card-header">jumps crashed</span>
+                        <span class="card-header">lives left</span>
 
                 </div>
             </div>
         </div>
+    </div>
+    </div>
+
+
 
     </div>
 
     <div class="footer" text-align="center">
         <button id="clear">New Game</button>
         <div id="fooTxt">Press any key to get started!</div>
+
     </div>
-
-
-
-
-
 
 
 
@@ -208,6 +189,7 @@
         var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
             "T", "U", "V", "W", "X", "Y", "Z", "_"
         ];
+
         var vocabList = [{
                 "vocabWord": "AASI",
                 "vocabDef": "American Association of Snowboard Instructors."
@@ -223,41 +205,65 @@
         var themeSound = new Audio('assets/audio/Wind-Mark_DiAngelo-1940285615.mp3');
 
 
+        // Press Any Key To Start
         document.onkeypress = function (event) {
 
-            $("#mainContent").css('visibility', 'visible');
-            // $("#openingContent").css('visibility', 'visible');
+        
+            if (isFirstPress = true) {
+               document.body.classList.replace("openingContent", "mainContent");
+            }
+                //Remove intro screen
+             //   var intro = document.getElementById("openingContent");
+             //   intro.remove(1);
+             //   setBoard();
 
-            snowboardDepart.play();
-            console.log("started snowboardDepart");
 
-            themeSound.loop = true;
-            console.log("loop set")
-            themeSound.play();
-            console.log("started themeSound");
 
-            for (var i = 0; i < letters.length; i++) {
-                console.log(letters[i]);
+                    snowboardDepart.play();
+                    console.log("started snowboardDepart");
 
-                var letterBtn = $("<button>").addClass("letter-button letterButton")
-                    .attr("data-letter", letters[i])
-                    .text(letters[i])
-                    .appendTo("#buttons");
+                    themeSound.loop = true;
+                    themeSound.play();
 
+                    console.log("started themeSound");
+
+                    $("#openingContent").css('visibility', 'hidden');
+                    $("#mainContent").css('visibility', 'visible');
+                }
+
+                else {
+
+                    for (var i = 0; i < letters.length; i++) {
+                        console.log(letters[i]);
+
+                        var letterBtn = $("<button>").addClass("letter-button letter letter-button-color")
+                            .attr("data-letter", letters[i])
+                            .text(letters[i])
+                            .appendTo("#buttons");
+                    };
+
+                    var vocab = $("<span>").addClass("display")
+                        .text(vocab)
+                        .appendTo("#vocab");
+                };
+
+                $(".letter-button").on("click", function () {
+                    var guessedLetters = $("<div>")
+                    guessedLetters.addClass("letter fridge-color");
+                    guessedLetters.text($(this).attr("data-letter"));
+                    $("#display").append(guessedLetters);
+                    $("#display").append(guessedLetters);
+
+                });
+
+                $("#clear").on("click", function () {
+                    $("#display, #guessed, #buttons").empty();
+                });
             };
-
-            $(".letterButton").on("click", function () { // Inside the on-click event...
-                var guessedLetter = $("<div>") // variable called "guessedLetter" sets the variable equal to a new div
-                guessedLetter.addClass("guess-color");
-                guessedLetter.text($(this).attr("data-letter"));
-                $("#letterBox").append(guessedLetter);
-
-            });
-
-            $("#clear").on("click", function () {
-                $("#letterBox").empty();
-            });
         };
+
+
+
     </script>
 </body>
 
