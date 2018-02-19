@@ -87,9 +87,12 @@
         border: 0px;
     }
 
-    #mainContent {
-        visibility: hidden;
-    }
+
+
+
+    
+
+
 </style>
 
 <body>
@@ -99,11 +102,11 @@
         <h3 class="text-center">Guess the word before the SnowMan runs out of time to land his trick!</h3>
     </div>
 
-    <div class="container">
+    <div class="container" id="container">
         
-
-        <div class="row" id=mainContent>
-
+        <div class="row" id="mainContent">
+            <img src='assets/images/get-started.gif' class=>
+        
             <div class="col-lg-6">
                 <br>
                 <div class="card">
@@ -135,8 +138,11 @@
                     </div>
                 </div>
             </div>
-
         </div>
+        </div>
+
+
+
     </div>
 
     <div class="footer" text-align="center">
@@ -153,11 +159,15 @@
                             "P", "Q",
                             "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"
                         ];
-                        
+    var snowboardDepart = new Audio('assets/audio/snowboardDepart.m4a');                    
     var themeSound = new Audio('assets/audio/Wind-Mark_DiAngelo-1940285615.mp3');
-
     document.onkeypress = function (event) {
 
+       queue(true)snowboardDepart.play();
+       queue(true)$("#container").css('visibility', 'visible');
+
+
+    document.onkeypress = function (event) {
         $("#mainContent").css('visibility', 'visible');
         themeSound.play();
 
@@ -174,14 +184,8 @@
 
                         $(".letter-button").on("click", function () {
 
-                            // Inside the on-click event...
-
-                            // 8. Create a variable called "fridgeMagnet" and set the variable equal to a new div.
-
                             var fridgeMagnet = $("<div>")
 
-                            // 9. Give each "fridgeMagnet" the following classes: "letter fridge-color".
-                            // 10. Then chain the following code onto the "fridgeMagnet" variable: .text($(this).attr("data-letter"))
 
                             fridgeMagnet.addClass("letter fridge-color");
                             fridgeMagnet.text($(this).attr("data-letter"));
@@ -193,21 +197,9 @@
                             $("#display").empty();
                         });
                     };
-                
+                };
+            
 
-
-                // 11. Lastly append the fridgeMagnet variable to the "#display" div (provided);
-
-                // Be sure to test that your code works for this major task, before proceeding to the next one!
-
-                // MAJOR TASK #3: ATTACH ON-CLICK EVENTS TO "CLEAR" BUTTON
-                // =================================================================================
-
-                // 12. Create an "on-click" event attached to the "#clear" button id.
-
-                // Inside the on-click event...
-
-                // 13. Use the jQuery "empty()" method to clear the contents of the "#display" div.
     </script>
 </body>
 
