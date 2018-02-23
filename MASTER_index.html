@@ -17,7 +17,7 @@
     body {
         font-family: "Josefin Sans";
         background-color: aliceblue;
-        max-height: 600px;
+        height: auto;
     }
 
     .jumbotron {
@@ -29,7 +29,7 @@
     }
 
     .footer {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
@@ -41,7 +41,7 @@
     }
 
     #fooTxt {
-        float: center bottom: 0;
+        float: center bottom;
         color: white;
         text-align: center;
         padding-top: 20px;
@@ -64,6 +64,7 @@
 
     .display {
         min-height: 120px;
+        max-height: 200px;
     }
 
     #buttons {
@@ -73,7 +74,8 @@
     }
 
     #letterBox,
-    #scoreboard {
+    #scoreboard,
+    #vocab {
         padding: 10px;
     }
 
@@ -126,9 +128,9 @@
         <h3 class="text-center">Guess the word before the SnowMan runs out of time to land his trick!</h3>
     </div>
 
-
-
-    <div class="window" id="interface">
+    <div class="window" id="interface"> Welcome to Version 7 of the SnowBoardMan! Our projects have mostly been accessible in small modules only as of late.
+        There are several newer and older versions accessible from our site. We embrace a Kaizen Ethos mindset here at Palmer
+        Inc. We thank you for your patience and apologize for any gaminconvenience.
 
         <!-- <div class="row" id="OpeningContent" -->
         <div class="row" id="mainContent">
@@ -151,6 +153,17 @@
                     <div class="display" id="buttons"></div>
                 </div>
             </div>
+
+            <!-- Vocab Bin -->
+            <div class="col-lg-6">
+                <br>
+                <div class="card">
+                    <p class="card-header">use this vocabDef to help you guess the trick name</p>
+                    <div class="display" id="vocab"></div>
+                </div>
+            </div>
+
+            <!-- ScoreBoard -->
 
             <div class="col-lg-6">
                 <br>
@@ -179,17 +192,26 @@
                         </div>
 
                     </div>
+                    <!-- Blank Spaces -->
+                    <div class="col-lg-12">
+                        <br>
+                        <div class="card">
+                            <div class="display" id="fillInBlanks"></div>
 
+                            <!-- insert 1 blank for each letter in vocabWord[i] -->
+
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 
-    <div class="footer" text-align="center">
+    <footer class="footer" text-align="center">
         <button id="clear">New Game</button>
         <div id="fooTxt">Press any key to get started!</div>
-    </div>
+    </footer>
 
 
 
@@ -205,8 +227,8 @@
         var isFirstPress = true;
 
         // Arrays
-        var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
-            "T", "U", "V", "W", "X", "Y", "Z", "_"
+        var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+            "S", "T", "U", "V", "W", "X", "Y", "Z", "_"
         ];
         var vocabList = [{
                 "vocabWord": "AASI",
@@ -215,6 +237,30 @@
             {
                 "vocabWord": "Air",
                 "vocabDef": "A jump or leap where the snowboard lifts off the ground."
+            },
+            {
+                "vocabWord": "Air-to-Fakie",
+                "vocabDef": "A half pipe trick where the wall is approached riding forward, no rotation is made in the air, and the boarder lands riding backward *or fakie*."
+            },
+            {
+                "vocabWord": "All-Mountain",
+                "vocabDef": "Type of snowboard designed to ride any type of terrain including groomers, powder, park and half pipe."
+            },
+            {
+                "vocabWord": "Alley-Oop",
+                "vocabDef": "Spinning frontside on the backside wall of the pipe; popping off of ones toe edge and executing a backside spin or off of ones heel edge and executing a frontside spin."
+            },
+            {
+                "vocabWord": "Backcountry",
+                "vocabDef": "Terrain outside of resort boundaries with no marked trails and natural obstacles like trees and cliffs."
+            },
+            {
+                "vocabWord": "Backside",
+                "vocabDef": "A term originating from surfing, the direction in which you turn if you are traveling up a wave and turn so as you back faces the wave. In snowboarding, it is used to describe your direction of rotation in which the rider spins clockwise in the air if their left foot is facing down the hill *regular*. It is the opposite of frontside."
+            },
+            {
+                "vocabWord": "Backside 180",
+                "vocabDef": "An aerial move where the rider makes a 180 degree rotatation off the jump leading with the heelside *clockwise for a regular stance and counterclockwise for goofy*."
             }
         ];
 
