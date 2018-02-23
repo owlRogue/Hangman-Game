@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Snow Man</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,400,600,700">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/normalize.css">
+</head>
+
+<style>
+    body {
+        font-family: "Josefin Sans";
+        background-color: aliceblue;
+        height: auto;
+    }
+
+    .jumbotron {
+        margin: 0px auto;
+        background: url('assets/images/snow_jumbo.gif') no-repeat top center;
+        background-size: cover;
+        color: white;
+        border-radius: 0;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: url('assets/images/snow_jumbo.gif') no-repeat bottom center;
+        background-size: cover;
+        font-size: 30px;
+        min-height: 20px;
+    }
+
+    #fooTxt {
+        float: center bottom;
+        color: white;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .letterButton {
+        width: 30px;
+        height: 30px;
+        border-style: solid;
+        padding: 2px;
+        float: left;
+        margin: 4px;
+        border-radius: 15px;
+        vertical-align: center;
+    }
+
+    .guess-color {
+        color: rgb(97, 167, 214);
+    }
+
+    .display {
+        min-height: 120px;
+        max-height: 200px;
+    }
+
+    #buttons {
+        background: url('assets/images/snow_jumbo.gif') no-repeat top left;
+        background-size: cover;
+        padding: 10px;
+    }
+
+    #letterBox,
+    #scoreboard,
+    #vocab {
+        padding: 10px;
+    }
+
+    #clear {
+        position: absolute;
+        left: 0;
+        font-size: 28px;
+        color: white;
+        border-style: none;
+        width: auto;
+        height: 100%;
+        background-color: rgb(97, 167, 214);
+        border: 0px;
+    }
+
+    #mainContent {
+        visibility: hidden;
+    }
+
+    #openingContent {
+        visibility: visible;
+        height: 600px;
+    }
+
+    #image {
+        background: url('assets/images/get_started.gif') no-repeat top center;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    .row {
+        padding: 40px;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .count {
+        width: 20%;
+        height: 100px;
+    }
+</style>
+
+<body>
+
+    <div class="jumbotron">
+        <h1 class="text-center">SnowMan Game</h1>
+        <h3 class="text-center">Guess the word before the SnowMan runs out of time to land his trick!</h3>
+    </div>
+
+    <div class="window" id="interface"> Welcome to Version 7 of the SnowBoardMan! Our projects have mostly been accessible in small modules only as of late.
+        There are several newer and older versions accessible from our site. We embrace a Kaizen Ethos mindset here at Palmer
+        Inc. We thank you for your patience and apologize for any gaminconvenience.
+
+        <!-- <div class="row" id="OpeningContent" -->
+        <div class="row" id="mainContent">
+
+            <!-- Guessed Letters -->
+            <div class="col-lg-6">
+                <br>
+                <div class="card">
+                    <p class="card-header">already guessed</p>
+                    <div class="display" id="letterBox"></div>
+                </div>
+
+            </div>
+
+            <!-- Letter Bin -->
+            <div class="col-lg-6">
+                <br>
+                <div class="card">
+                    <p class="card-header">choose your next move</p>
+                    <div class="display" id="buttons"></div>
+                </div>
+            </div>
+
+            <!-- Vocab Bin -->
+            <div class="col-lg-6">
+                <br>
+                <div class="card">
+                    <p class="card-header">use this vocabDef to help you guess the trick name</p>
+                    <div class="display" id="vocab"></div>
+                </div>
+            </div>
+
+            <!-- ScoreBoard -->
+
+            <div class="col-lg-6">
+                <br>
+                <div class="card">
+                    <p class="card-header">scoreboard</p>
+
+                    <!-- ScoreBoard -->
+                    <div class="display" id="scoreboard">
+                        <br>
+                        <!-- Jumps Survived -->
+                        <div class="count" id="jumpsSurvived">
+                            <h5>jumps survived</h5>
+                            <span>jumps survived</span>
+                        </div>
+
+                        <!-- Jumps NOT Survived -->
+                        <div class="count" id="jumpsCrashed">
+                            <h5>jumps crashed</h5>
+                            <span>jumps survived</span>
+                        </div>
+
+                        <!-- Critical Injuries (AKA Deaths (aka lives)) -->
+                        <div class="count" id="criticalInjuries">
+                            <h5>lives left</h5>
+                            <span>jumps survived</span>
+                        </div>
+
+                    </div>
+                    <!-- Blank Spaces -->
+                    <div class="col-lg-12">
+                        <br>
+                        <div class="card">
+                            <div class="display" id="fillInBlanks"></div>
+
+                            <!-- insert 1 blank for each letter in vocabWord[i] -->
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer" text-align="center">
+        <button id="clear">New Game</button>
+        <div id="fooTxt">Press any key to get started!</div>
+    </footer>
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        // Basic Variables
+        var jumpsTaken = 0;
+        var isFirstPress = true;
+
+        // Arrays
+        var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+            "S", "T", "U", "V", "W", "X", "Y", "Z", "_"
+        ];
+        var vocabList = [{
+                "vocabWord": "AASI",
+                "vocabDef": "American Association of Snowboard Instructors."
+            },
+            {
+                "vocabWord": "Air",
+                "vocabDef": "A jump or leap where the snowboard lifts off the ground."
+            },
+            {
+                "vocabWord": "Air-to-Fakie",
+                "vocabDef": "A half pipe trick where the wall is approached riding forward, no rotation is made in the air, and the boarder lands riding backward *or fakie*."
+            },
+            {
+                "vocabWord": "All-Mountain",
+                "vocabDef": "Type of snowboard designed to ride any type of terrain including groomers, powder, park and half pipe."
+            },
+            {
+                "vocabWord": "Alley-Oop",
+                "vocabDef": "Spinning frontside on the backside wall of the pipe; popping off of ones toe edge and executing a backside spin or off of ones heel edge and executing a frontside spin."
+            },
+            {
+                "vocabWord": "Backcountry",
+                "vocabDef": "Terrain outside of resort boundaries with no marked trails and natural obstacles like trees and cliffs."
+            },
+            {
+                "vocabWord": "Backside",
+                "vocabDef": "A term originating from surfing, the direction in which you turn if you are traveling up a wave and turn so as you back faces the wave. In snowboarding, it is used to describe your direction of rotation in which the rider spins clockwise in the air if their left foot is facing down the hill *regular*. It is the opposite of frontside."
+            },
+            {
+                "vocabWord": "Backside 180",
+                "vocabDef": "An aerial move where the rider makes a 180 degree rotatation off the jump leading with the heelside *clockwise for a regular stance and counterclockwise for goofy*."
+            }
+        ];
+
+        // Media Variables
+        var snowboardDepart = new Audio('assets/audio/snowboardDepart.m4a');
+        var themeSound = new Audio('assets/audio/Wind-Mark_DiAngelo-1940285615.mp3');
+
+
+        document.onkeypress = function (event) {
+
+            $("#mainContent").css('visibility', 'visible');
+            // $("#openingContent").css('visibility', 'visible');
+
+            snowboardDepart.play();
+            console.log("started snowboardDepart");
+
+            themeSound.loop = true;
+            console.log("loop set")
+            themeSound.play();
+            console.log("started themeSound");
+
+            for (var i = 0; i < letters.length; i++) {
+                console.log(letters[i]);
+
+                var letterBtn = $("<button>").addClass("letter-button letterButton")
+                    .attr("data-letter", letters[i])
+                    .text(letters[i])
+                    .appendTo("#buttons");
+
+            };
+
+            $(".letterButton").on("click", function () { // Inside the on-click event...
+                var guessedLetter = $("<div>") // variable called "guessedLetter" sets the variable equal to a new div
+                guessedLetter.addClass("guess-color");
+                guessedLetter.text($(this).attr("data-letter"));
+                $("#letterBox").append(guessedLetter);
+
+            });
+
+            $("#clear").on("click", function () {
+                $("#letterBox").empty();
+            });
+        };
+    </script>
+</body>
+
+</html>

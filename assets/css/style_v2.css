@@ -1,0 +1,103 @@
+    body {
+        font-family: "Josefin Sans";
+        background-color: aliceblue;
+        max-height: 600px;
+    };
+
+    .jumbotron {
+        margin: 0px auto;
+        background: url('assets/images/snow_jumbo.gif') no-repeat top center;
+        background-size: cover;
+        color: white;
+        border-radius: 0;
+    };
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: url('assets/images/snow_jumbo.gif') no-repeat top center;
+        background-size: cover;
+        font-size: 30px;
+        min-height: 20px;
+    };
+
+    #fooTxt {
+        float: center bottom 0;
+        color: white;
+        text-align: center;
+        padding-top: 20px;
+    };
+
+    .letterButton {
+        width: 30px;
+        height: 30px;
+        border-style: solid;
+        padding: 2px;
+        float: left;
+        margin: 4px;
+        border-radius: 15px;
+        vertical-align: center;
+    };
+
+    .guess-color {
+        color: rgb(97, 167, 214);
+    };
+
+    .display {        
+        min-height: 120px;
+    };
+
+    #buttons {
+        background-image: url('Users/koltynpalmer/dev/class_dev/homework/Hangman-Game/assets/images/snow_jumbo.gif') no-repeat top center;
+        background-size: cover;
+        padding: 10px;
+    };
+
+    #letterBox,
+    #scoreboard {
+        padding: 10px;
+    };
+
+    #clear {
+        position: absolute;
+        left: 0;
+        font-size: 28px;
+        color: white;
+        border-style: none;
+        width: auto;
+        height: 100%;
+        background-color: rgb(97, 167, 214);
+        border: 0px;
+    };
+
+    #mainContent {
+        visibility: hidden;
+    }
+
+    #openingContent {
+        visibility: visible;
+        height: 600px;
+    };
+
+    #image {
+        background-image:url('assets/images/get_started.gif');
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+    };
+
+    .row {
+        padding: 40px;
+    };
+
+    ul {
+        list-style: none;
+    };
+
+    .count{
+        width: 20%;
+        height: 100px;
+    };
